@@ -24,11 +24,13 @@
       border-radius: 20px;
       text-align: center;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+      position: relative;
     }
     h1 {
       font-size: 48px;
       margin-bottom: 10px;
-      color: #5b3e3e;
+      color: #d67b96; /* rosa claro meio queimado */
     }
     p {
       font-size: 24px;
@@ -53,17 +55,19 @@
       cursor: pointer;
     }
     .petal {
-      position: absolute;
-      width: 20px;
-      height: 20px;
+      position: fixed;
+      top: -10px;
+      width: 15px;
+      height: 15px;
       background: pink;
       border-radius: 50%;
       opacity: 0.6;
-      animation: fall 10s linear infinite;
+      pointer-events: none;
+      animation: fall linear infinite;
     }
     @keyframes fall {
       0% {
-        transform: translateY(-50px) rotate(0deg);
+        transform: translateY(0) rotate(0deg);
         opacity: 0.8;
       }
       100% {
@@ -92,16 +96,19 @@
       }
     }
 
-    // Criar pétalas
-    for (let i = 0; i < 30; i++) {
-      let petal = document.createElement("div");
+    function createPetal() {
+      const petal = document.createElement("div");
       petal.classList.add("petal");
       petal.style.left = Math.random() * 100 + "vw";
       petal.style.animationDuration = (5 + Math.random() * 5) + "s";
-      petal.style.width = petal.style.height = 10 + Math.random() * 20 + "px";
+      petal.style.width = petal.style.height = 10 + Math.random() * 10 + "px";
       document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
     }
+
+    setInterval(createPetal, 300);
   </script>
 </body>
 </html>
+
 
