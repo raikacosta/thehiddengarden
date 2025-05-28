@@ -10,8 +10,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Great Vibes', cursive;
-      background: url('https://i.imgur.com/o5p3VfI.jpeg') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(to bottom, #e5f7e0, #fce4ec); /* Verde claro para rosa suave */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -65,6 +64,7 @@
       opacity: 0.6;
       pointer-events: none;
       animation: fall linear infinite;
+      z-index: 0;
     }
     @keyframes fall {
       0% {
