@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Entrada Secreta - Jardim</title>
+  <style>
+    body {
+      background: #e0f2f1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 0;
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #00796b;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      width: 250px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 150px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #004d40;
+    }
+    .error {
+      color: #b00020;
+      margin-top: 10px;
+      height: 20px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <h2>Digite a senha para entrar no Jardim Secreto</h2>
+  <input type="password" id="senha" placeholder="Senha" autocomplete="off" />
+  <button onclick="verificarSenha()">Entrar</button>
+  <div class="error" id="msgErro"></div>
+
+  <script>
+    const senhaCorreta = "SecretPetals140";
+    const urlNotion = "https://www.notion.so/200ca51ef40480a9a422e819130a3f4d?pvs=4";
+
+    function verificarSenha() {
+      const senhaDigitada = document.getElementById("senha").value;
+      const msgErro = document.getElementById("msgErro");
+      if (senhaDigitada === senhaCorreta) {
+        window.location.href = urlNotion;
+      } else {
+        msgErro.textContent = "Senha incorreta, tente novamente.";
+      }
+    }
+
+    document.getElementById("senha").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        verificarSenha();
+      }
+    });
+  </script>
+</body>
+</html>
