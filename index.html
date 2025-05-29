@@ -82,21 +82,32 @@
       position: absolute;
       bottom: 30px;
       right: 30px;
-      background-color: #f9c5d1;
-      color: #fff;
-      font-family: 'Great Vibes', cursive;
-      font-size: 20px;
-      padding: 14px 24px;
+      width: 70px;
+      height: 70px;
+      background-image: url('https://i.imgur.com/Xn9m0Mk.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
       border: none;
       border-radius: 50%;
       cursor: pointer;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
       z-index: 2;
     }
 
     #musicButton:hover {
       transform: scale(1.1);
+    }
+
+    #musicButton::after {
+      content: "♫";
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 18px;
+      color: #d67b96;
     }
   </style>
 </head>
@@ -109,7 +120,7 @@
     <button onclick="checkPassword()">Entrar</button>
   </div>
 
-  <button id="musicButton" onclick="startMusic()">Ligar música</button>
+  <button id="musicButton" onclick="startMusic()" title="Ligar música"></button>
 
   <audio id="bgMusic" loop>
     <source src="https://www.dropbox.com/scl/fi/dhqt1zpzb6pwabqx0ttlz/Barbie-in-the-12-Dancing-Princesses-Opening-Theme-Extended.mp3?rlkey=houcm8eftpdh20hl41rfx62on&st=5yo8p1jd&raw=1" type="audio/mpeg">
