@@ -54,14 +54,17 @@
       border-radius: 10px;
       cursor: pointer;
     }
+    .enter-button {
+      margin-bottom: 10px;
+    }
     .petal {
       position: absolute;
       top: 0;
-      width: 15px;
-      height: 15px;
-      background-size: contain;
+      width: 20px;
+      height: 20px;
+      background-size: cover;
       background-repeat: no-repeat;
-      background-position: center;
+      border-radius: 50%;
       opacity: 0.8;
       pointer-events: none;
       animation: fall linear infinite;
@@ -78,36 +81,23 @@
       }
     }
 
-    #musicButton {
-      position: absolute;
-      bottom: 30px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      background-image: url('https://i.imgur.com/Xn9m0Mk.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
+    #music-button {
+      background-color: #e5f7e0;
       border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      z-index: 2;
-    }
-
-    #musicButton:hover {
-      transform: scale(1.1);
-    }
-
-    #musicButton::after {
-      content: "♫";
-      position: absolute;
-      bottom: -25px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Great Vibes', cursive;
+      border-radius: 20px;
+      padding: 10px 20px;
       font-size: 18px;
-      color: #d67b96;
+      font-family: 'Great Vibes', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    #music-button img {
+      width: 30px;
+      height: 30px;
     }
   </style>
 </head>
@@ -117,14 +107,16 @@
     <p>Digite a senha do jardim</p>
     <input type="password" id="password" placeholder="Senha">
     <br />
-    <button onclick="checkPassword()">Entrar</button>
+    <button class="enter-button" onclick="checkPassword()">Entrar</button>
+    <br />
+    <button id="music-button" onclick="playMusic()">
+      Ligar a música 🎵
+      <img src="https://i.imgur.com/Xn9m0Mk.png" alt="Flor rosa" />
+    </button>
+    <audio id="background-music" loop>
+      <source src="https://www.dropbox.com/scl/fi/dhqt1zpzb6pwabqx0ttlz/Barbie-in-the-12-Dancing-Princesses-Opening-Theme-Extended.mp3?rlkey=houcm8eftpdh20hl41rfx62on&raw=1" type="audio/mpeg">
+    </audio>
   </div>
-
-  <button id="musicButton" onclick="startMusic()" title="Ligar música"></button>
-
-  <audio id="bgMusic" loop>
-    <source src="https://www.dropbox.com/scl/fi/dhqt1zpzb6pwabqx0ttlz/Barbie-in-the-12-Dancing-Princesses-Opening-Theme-Extended.mp3?rlkey=houcm8eftpdh20hl41rfx62on&st=5yo8p1jd&raw=1" type="audio/mpeg">
-  </audio>
 
   <script>
     function checkPassword() {
@@ -136,25 +128,22 @@
       }
     }
 
-    function startMusic() {
-      const audio = document.getElementById("bgMusic");
-      audio.volume = 0.3;
-      audio.play();
-      document.getElementById("musicButton").style.display = "none";
+    function playMusic() {
+      const music = document.getElementById("background-music");
+      music.play();
     }
 
     function createPetal() {
       const petal = document.createElement("div");
       petal.classList.add("petal");
-
-      const randomImg = Math.random() < 0.5
-        ? "https://i.imgur.com/Mg2JiME.png"
-        : "https://i.imgur.com/UdIUcNc.png";
-      petal.style.backgroundImage = `url('${randomImg}')`;
-
+      const petalImages = [
+        "https://i.imgur.com/Mg2JiME.png",
+        "https://i.imgur.com/UdIUcNc.png"
+      ];
+      petal.style.backgroundImage = `url('${petalImages[Math.floor(Math.random() * petalImages.length)]}')`;
       petal.style.left = Math.random() * window.innerWidth + "px";
       petal.style.animationDuration = (5 + Math.random() * 5) + "s";
-      petal.style.width = petal.style.height = 10 + Math.random() * 10 + "px";
+      petal.style.width = petal.style.height = 15 + Math.random() * 10 + "px";
       document.body.appendChild(petal);
       setTimeout(() => petal.remove(), 10000);
     }
@@ -163,3 +152,4 @@
   </script>
 </body>
 </html>
+
