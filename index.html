@@ -55,7 +55,7 @@
       cursor: pointer;
     }
     .enter-button {
-      margin-bottom: 10px;
+      margin-bottom: 25px;
     }
     .petal {
       position: absolute;
@@ -93,11 +93,16 @@
       justify-content: center;
       gap: 10px;
       cursor: pointer;
-      margin-top: 5px;
+      margin-top: 0;
+      color: #333;
     }
     #music-button img {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
+    }
+    #music-button .note {
+      width: 24px;
+      height: 24px;
     }
   </style>
 </head>
@@ -110,7 +115,8 @@
     <button class="enter-button" onclick="checkPassword()">Entrar</button>
     <br />
     <button id="music-button" onclick="playMusic()">
-      Ligar a música 🎵
+      <img class="note" src="https://i.imgur.com/zGzxlZy.png" alt="Nota musical" />
+      Ligar a música
       <img src="https://i.imgur.com/Xn9m0Mk.png" alt="Flor rosa" />
     </button>
     <audio id="background-music" loop>
