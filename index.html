@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Great Vibes', cursive;
-      background: linear-gradient(to bottom, #e5f7e0, #fce4ec); /* Verde claro para rosa suave */
+      background: linear-gradient(to bottom, #e5f7e0, #fce4ec);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -30,7 +30,7 @@
     h1 {
       font-size: 48px;
       margin-bottom: 10px;
-      color: #d67b96; /* rosa claro meio queimado */
+      color: #d67b96;
     }
     p {
       font-size: 24px;
@@ -59,9 +59,11 @@
       top: 0;
       width: 15px;
       height: 15px;
-      background: pink;
-      border-radius: 50%;
-      opacity: 0.6;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 0;
+      opacity: 0.8;
       pointer-events: none;
       animation: fall linear infinite;
       z-index: 0;
@@ -100,9 +102,19 @@
     function createPetal() {
       const petal = document.createElement("div");
       petal.classList.add("petal");
+
+      const petalImages = [
+        "https://i.imgur.com/Mg2JiME.png",
+        "https://i.imgur.com/UdIUcNc.png"
+      ];
+      const img = petalImages[Math.floor(Math.random() * petalImages.length)];
+      petal.style.backgroundImage = `url('${img}')`;
+
       petal.style.left = Math.random() * window.innerWidth + "px";
       petal.style.animationDuration = (5 + Math.random() * 5) + "s";
-      petal.style.width = petal.style.height = 10 + Math.random() * 10 + "px";
+      const size = 10 + Math.random() * 10;
+      petal.style.width = petal.style.height = size + "px";
+
       document.body.appendChild(petal);
       setTimeout(() => petal.remove(), 10000);
     }
@@ -111,3 +123,4 @@
   </script>
 </body>
 </html>
+
