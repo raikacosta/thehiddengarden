@@ -62,7 +62,6 @@
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      border-radius: 0;
       opacity: 0.8;
       pointer-events: none;
       animation: fall linear infinite;
@@ -78,6 +77,27 @@
         opacity: 0;
       }
     }
+
+    #musicButton {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      background-color: #f9c5d1;
+      color: #fff;
+      font-family: 'Great Vibes', cursive;
+      font-size: 20px;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      z-index: 2;
+    }
+
+    #musicButton:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
@@ -89,6 +109,12 @@
     <button onclick="checkPassword()">Entrar</button>
   </div>
 
+  <button id="musicButton" onclick="startMusic()">Ligar música</button>
+
+  <audio id="bgMusic" loop>
+    <source src="https://www.dropbox.com/scl/fi/dhqt1zpzb6pwabqx0ttlz/Barbie-in-the-12-Dancing-Princesses-Opening-Theme-Extended.mp3?rlkey=houcm8eftpdh20hl41rfx62on&st=5yo8p1jd&raw=1" type="audio/mpeg">
+  </audio>
+
   <script>
     function checkPassword() {
       var password = document.getElementById("password").value;
@@ -99,22 +125,25 @@
       }
     }
 
+    function startMusic() {
+      const audio = document.getElementById("bgMusic");
+      audio.volume = 0.3;
+      audio.play();
+      document.getElementById("musicButton").style.display = "none";
+    }
+
     function createPetal() {
       const petal = document.createElement("div");
       petal.classList.add("petal");
 
-      const petalImages = [
-        "https://i.imgur.com/Mg2JiME.png",
-        "https://i.imgur.com/UdIUcNc.png"
-      ];
-      const img = petalImages[Math.floor(Math.random() * petalImages.length)];
-      petal.style.backgroundImage = `url('${img}')`;
+      const randomImg = Math.random() < 0.5
+        ? "https://i.imgur.com/Mg2JiME.png"
+        : "https://i.imgur.com/UdIUcNc.png";
+      petal.style.backgroundImage = `url('${randomImg}')`;
 
       petal.style.left = Math.random() * window.innerWidth + "px";
       petal.style.animationDuration = (5 + Math.random() * 5) + "s";
-      const size = 10 + Math.random() * 10;
-      petal.style.width = petal.style.height = size + "px";
-
+      petal.style.width = petal.style.height = 10 + Math.random() * 10 + "px";
       document.body.appendChild(petal);
       setTimeout(() => petal.remove(), 10000);
     }
@@ -123,4 +152,3 @@
   </script>
 </body>
 </html>
-
