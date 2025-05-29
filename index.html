@@ -12,8 +12,9 @@
       font-family: 'Great Vibes', cursive;
       background: linear-gradient(to bottom, #e5f7e0, #fce4ec);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
       overflow: hidden;
       position: relative;
@@ -26,6 +27,7 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       z-index: 1;
       position: relative;
+      width: 320px;
     }
     h1 {
       font-size: 48px;
@@ -44,8 +46,10 @@
       border: none;
       outline: none;
       margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
     }
-    button {
+    button.enter-button {
       padding: 10px 20px;
       font-size: 16px;
       background-color: #a78bfa;
@@ -53,10 +57,38 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 30px;
     }
-    .enter-button {
-      margin-bottom: 25px;
+
+    /* Botão da rosa maior */
+    #music-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
     }
+    #music-button img {
+      width: 80px;
+      height: 80px;
+      user-select: none;
+      pointer-events: none;
+    }
+    #music-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 22px;
+      color: #333;
+      user-select: none;
+      pointer-events: none;
+    }
+
     .petal {
       position: absolute;
       top: 0;
@@ -80,49 +112,24 @@
         opacity: 0;
       }
     }
-
-    #music-button {
-      background-color: #e5f7e0;
-      border: none;
-      border-radius: 20px;
-      padding: 10px 20px;
-      font-size: 18px;
-      font-family: 'Great Vibes', cursive;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      cursor: pointer;
-      margin-top: 0;
-      color: #333;
-    }
-    #music-button img {
-      width: 40px;
-      height: 40px;
-    }
-    #music-button .note {
-      width: 24px;
-      height: 24px;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>The Hidden Garden</h1>
     <p>Digite a senha do jardim</p>
-    <input type="password" id="password" placeholder="Senha">
-    <br />
+    <input type="password" id="password" placeholder="Senha" />
     <button class="enter-button" onclick="checkPassword()">Entrar</button>
-    <br />
-    <button id="music-button" onclick="playMusic()">
-      <img class="note" src="https://i.imgur.com/zGzxlZy.png" alt="Nota musical" />
-      Ligar a música
-      <img src="https://i.imgur.com/Xn9m0Mk.png" alt="Flor rosa" />
-    </button>
-    <audio id="background-music" loop>
-      <source src="https://www.dropbox.com/scl/fi/dhqt1zpzb6pwabqx0ttlz/Barbie-in-the-12-Dancing-Princesses-Opening-Theme-Extended.mp3?rlkey=houcm8eftpdh20hl41rfx62on&raw=1" type="audio/mpeg">
-    </audio>
   </div>
+
+  <button id="music-button" onclick="playMusic()">
+    <img src="https://i.imgur.com/Xn9m0Mk.png" alt="Flor rosa" />
+    <div id="music-text">Ligar a música</div>
+  </button>
+
+  <audio id="background-music" loop>
+    <source src="https://www.dropbox.com/scl/fi/dhqt1zpzb6pwabqx0ttlz/Barbie-in-the-12-Dancing-Princesses-Opening-Theme-Extended.mp3?rlkey=houcm8eftpdh20hl41rfx62on&raw=1" type="audio/mpeg" />
+  </audio>
 
   <script>
     function checkPassword() {
@@ -158,4 +165,3 @@
   </script>
 </body>
 </html>
-
